@@ -1,0 +1,24 @@
+templates:
+  - name: fastapi
+    description: "FastAPI REST API application with Pydantic models, SQLAlchemy ORM, and modern Python tooling (uv, ruff)"
+    language: python
+    framework: fastapi
+    features:
+      - "FastAPI with async support"
+      - "Pydantic v2 for data validation"
+      - "SQLAlchemy 2.0 with async support"
+      - "Database migrations with Alembic"
+      - "Modern Python packaging with uv"
+      - "Code formatting and linting with ruff"
+      - "Health check endpoints"
+      - "CRUD operations for users and items"
+      - "Structured logging"
+      - "CORS middleware"
+    tags:
+      - api
+      - rest
+      - python
+      - fastapi
+      - pydantic
+      - sqlalchemy
+      - async
