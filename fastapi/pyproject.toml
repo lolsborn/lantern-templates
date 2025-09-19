@@ -43,8 +43,15 @@ dev-dependencies = [
 ]
 
 [tool.poe.tasks]
-dev = "uvicorn {{project_name}}.main:app --host 0.0.0.0 --port 8000 --reload"
+_compose = "docker compose up -d db || true"
 test = "pytest --cov={{project_name}} --cov-report=term-missing"
+lint = "ruff check ."
+
+[tool.poe.tasks.dev]
+deps = ["_compose"]
+envfile = ".env"
+shell = "uvicorn {{project_name}}.main:app --host 0.0.0.0 --port 8000 --reload --log-level debug"
+
 
 [tool.ruff]
 target-version = "py311"
