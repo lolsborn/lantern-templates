@@ -23,8 +23,9 @@ templates:
       - sqlalchemy
       - async
     next_steps:
-      - "uv sync"
-      - "poe dev"
+      - "uv sync # Install dependencies"
+      - "source .venv/bin/activate # Activate virtual environment"
+      - "poe dev # Run the development server"
       - "# Visit http://127.0.0.1:8000/docs for API documentation"
       - "# Visit http://127.0.0.1:8000/health for health check"
 
