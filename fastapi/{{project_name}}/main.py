@@ -1,8 +1,5 @@
 """Main FastAPI application module."""
 
-from contextlib import asynccontextmanager
-from typing import AsyncGenerator
-
 import structlog
 import uvicorn
 from fastapi import FastAPI
@@ -14,30 +11,19 @@ from .routers import health, items, users
 
 logger = structlog.get_logger()
 
-
-@asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    """Application lifespan manager."""
-    logger.info("Starting {{project_name}} application", version="0.1.0")
-
-    # Initialize database
-    init_db()
-
-    yield
-
-    logger.info("Shutting down {{project_name}} application")
+# Initialize database on startup
+init_db()
 
 
 def create_app() -> FastAPI:
     """Create and configure the FastAPI application."""
     app = FastAPI(
-        title="{{project_name}} API",
+        title="todo-fastapi API",
         description="A FastAPI application generated from Lantern template",
         version="0.1.0",
         docs_url="/docs",
         redoc_url="/redoc",
         openapi_url="/openapi.json",
-        lifespan=lifespan,
     )
 
     # Add CORS middleware
@@ -62,7 +48,7 @@ app = create_app()
 
 if __name__ == "__main__":
     uvicorn.run(
-        "{{project_name}}.main:app",
+        "todo-fastapi.main:app",
         host=settings.host,
         port=settings.port,
         reload=settings.debug,

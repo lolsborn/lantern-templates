@@ -43,14 +43,15 @@ dev-dependencies = [
 ]
 
 [tool.poe.tasks]
-_compose = "docker compose up -d db || true"
-test = "pytest --cov={{project_name}} --cov-report=term-missing"
+_compose = "docker compose up -d db"
+test = "pytest --cov=todo-fastapi --cov-report=term-missing"
 lint = "ruff check ."
+dev.sequence = ["_compose", "_dev"]
+dev.ignore_fail = true
 
-[tool.poe.tasks.dev]
-deps = ["_compose"]
+[tool.poe.tasks._dev]
 envfile = ".env"
-shell = "uvicorn {{project_name}}.main:app --host 0.0.0.0 --port 8000 --reload --log-level debug"
+shell = "uvicorn todo-fastapi.main:app --host 0.0.0.0 --port 8000 --reload --log-level debug"
 
 
 [tool.ruff]
