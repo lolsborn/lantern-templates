@@ -27,3 +27,38 @@ templates:
       - "uv run python -m {{project_name}}.main"
       - "# Visit http://127.0.0.1:8000/docs for API documentation"
       - "# Visit http://127.0.0.1:8000/health for health check"
+
+  - name: django
+    description: "Django 5 web application with REST API, modern Python tooling, and production-ready configuration"
+    language: python
+    framework: django
+    features:
+      - "Django 5 with async support"
+      - "Django REST Framework with OpenAPI docs"
+      - "Custom user model with authentication"
+      - "PostgreSQL database with Redis caching"
+      - "Celery for background tasks"
+      - "Modern Python packaging with pyproject.toml"
+      - "Code quality tools (ruff, mypy)"
+      - "Comprehensive testing with pytest"
+      - "Docker containerization"
+      - "Structured settings for different environments"
+      - "Production-ready security settings"
+    tags:
+      - web
+      - api
+      - python
+      - django
+      - rest
+      - postgresql
+      - redis
+      - celery
+      - docker
+    next_steps:
+      - "cp .env.example .env"
+      - "pip install -e .[dev]"
+      - "python manage.py migrate"
+      - "python manage.py createsuperuser"
+      - "python manage.py runserver"
+      - "# Visit http://127.0.0.1:8000/api/docs/ for API documentation"
+      - "# Visit http://127.0.0.1:8000/admin/ for Django admin"
