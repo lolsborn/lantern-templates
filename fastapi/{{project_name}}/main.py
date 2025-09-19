@@ -8,10 +8,9 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routers import health, items, users
 from .core.config import settings
 from .core.database import init_db
-
+from .routers import health, items, users
 
 logger = structlog.get_logger()
 
@@ -22,7 +21,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     logger.info("Starting {{project_name}} application", version="0.1.0")
 
     # Initialize database
-    await init_db()
+    init_db()
 
     yield
 

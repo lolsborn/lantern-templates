@@ -14,7 +14,7 @@ _start_time = time.time()
 
 
 @router.get("/", response_model=HealthResponse)
-async def health_check() -> HealthResponse:
+def health_check() -> HealthResponse:
     """Basic health check endpoint."""
     return HealthResponse(
         status="healthy",
@@ -25,7 +25,7 @@ async def health_check() -> HealthResponse:
 
 
 @router.get("/ready", response_model=HealthResponse)
-async def readiness_check() -> HealthResponse:
+def readiness_check() -> HealthResponse:
     """Readiness check endpoint for Kubernetes."""
     return HealthResponse(
         status="ready",
@@ -36,7 +36,7 @@ async def readiness_check() -> HealthResponse:
 
 
 @router.get("/live", response_model=HealthResponse)
-async def liveness_check() -> HealthResponse:
+def liveness_check() -> HealthResponse:
     """Liveness check endpoint for Kubernetes."""
     return HealthResponse(
         status="alive",
