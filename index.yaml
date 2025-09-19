@@ -62,3 +62,38 @@ templates:
       - "python manage.py runserver"
       - "# Visit http://127.0.0.1:8000/api/docs/ for API documentation"
       - "# Visit http://127.0.0.1:8000/admin/ for Django admin"
+
+  - name: rails
+    description: "Ruby on Rails 7 API application with JWT authentication, comprehensive testing, and modern Ruby tooling"
+    language: ruby
+    framework: rails
+    features:
+      - "Rails 7 with API-only configuration"
+      - "Devise authentication with JWT tokens"
+      - "PostgreSQL database with Redis caching"
+      - "Sidekiq for background job processing"
+      - "Comprehensive RSpec test suite with FactoryBot"
+      - "JSONAPI serialization for consistent responses"
+      - "RuboCop with Rails, RSpec, and Performance cops"
+      - "Security scanning with Brakeman"
+      - "Docker containerization with multi-service setup"
+      - "Health check and error handling endpoints"
+      - "Structured logging and monitoring ready"
+    tags:
+      - api
+      - rest
+      - ruby
+      - rails
+      - jwt
+      - postgresql
+      - redis
+      - sidekiq
+      - rspec
+      - docker
+    next_steps:
+      - "cp .env.example .env"
+      - "bundle install"
+      - "rails db:create db:migrate db:seed"
+      - "rails server"
+      - "# Visit http://127.0.0.1:3000/health for health check"
+      - "# API documentation: POST /api/v1/auth/sign_up, /api/v1/users"
