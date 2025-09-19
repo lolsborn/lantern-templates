@@ -24,7 +24,7 @@ templates:
       - async
     next_steps:
       - "uv sync"
-      - "uv run python -m {{project_name}}.main"
+      - "poe dev"
       - "# Visit http://127.0.0.1:8000/docs for API documentation"
       - "# Visit http://127.0.0.1:8000/health for health check"
 
