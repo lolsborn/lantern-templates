@@ -1,7 +1,7 @@
 """Main FastAPI application module."""
 
-from contextlib import asynccontextmanager
-from typing import AsyncGenerator
+from contextlib import contextmanager
+from typing import Generator
 
 import structlog
 import uvicorn
@@ -15,8 +15,8 @@ from .routers import health, items, users
 logger = structlog.get_logger()
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+@contextmanager
+def lifespan(app: FastAPI) -> Generator[None, None, None]:
     """Application lifespan manager."""
     logger.info("Starting {{project_name}} application", version="0.1.0")
 

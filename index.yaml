@@ -4,9 +4,9 @@ templates:
     language: python
     framework: fastapi
     features:
-      - "FastAPI with async support"
+      - "FastAPI"
       - "Pydantic v2 for data validation"
-      - "SQLAlchemy 2.0 with async support"
+      - "SQLAlchemy 2.0"
       - "Database migrations with Alembic"
       - "Modern Python packaging with uv"
       - "Code formatting and linting with ruff"
@@ -21,11 +21,10 @@ templates:
       - fastapi
       - pydantic
       - sqlalchemy
-      - async
     next_steps:
-      - "uv sync # Install dependencies"
-      - "source .venv/bin/activate # Activate virtual environment"
-      - "poe dev # Run the development server"
+      - "uv sync"
+      - "source .venv/bin/activate"
+      - "poe dev"
       - "# Visit http://127.0.0.1:8000/docs for API documentation"
       - "# Visit http://127.0.0.1:8000/health for health check"
 
