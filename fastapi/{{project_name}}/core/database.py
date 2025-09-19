@@ -1,9 +1,9 @@
 """Database configuration and connection management."""
 
-from typing import AsyncGenerator
+from typing import Generator
 
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from .config import settings
 
@@ -14,33 +14,31 @@ class Base(DeclarativeBase):
     pass
 
 
-engine = create_async_engine(
+engine = create_engine(
     settings.database_url,
     echo=settings.database_echo,
-    future=True,
 )
 
-AsyncSessionLocal = async_sessionmaker(
+SessionLocal = sessionmaker(
     bind=engine,
-    class_=AsyncSession,
-    expire_on_commit=False,
+    autocommit=False,
+    autoflush=False,
 )
 
 
-async def get_db() -> AsyncGenerator[AsyncSession, None]:
+def get_db() -> Generator[Session, None, None]:
     """Get database session."""
-    async with AsyncSessionLocal() as session:
-        try:
-            yield session
-        finally:
-            await session.close()
+    session = SessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
 
 
-async def init_db() -> None:
+def init_db() -> None:
     """Initialize database tables."""
-    async with engine.begin() as conn:
-        # Import all models here to ensure they are registered
-        from ..models.item import Item  # noqa: F401
-        from ..models.user import User  # noqa: F401
+    # Import all models here to ensure they are registered
+    from ..models.item import Item  # noqa: F401
+    from ..models.user import User  # noqa: F401
 
-        await conn.run_sync(Base.metadata.create_all)
+    Base.metadata.create_all(bind=engine)
