@@ -29,7 +29,7 @@ class Settings(BaseSettings):
 
     # Database settings
     database_url: str = Field(
-        default="sqlite+aiosqlite:///./{{project_name}}.db",
+        default="postgresql+psycopg2://postgres:postgres@localhost:5432/{{project_name}}",
         description="Database connection URL",
     )
     database_echo: bool = Field(
